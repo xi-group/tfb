@@ -1,6 +1,42 @@
 .\" Manpage for tfb.
 .\" Contact ivachkov@xi-group.com to correct errors or typos.
 .\" Process this with: groff -man -Tascii tfb.1
-.TH man 1 "05 Aug 2020" "1.0" "tfb man page"
+.TH TFB 1 "05 Aug 2020" "1.0" "tfb man page"
 .SH NAME
 \fBtfb\fR \- Trim Files from Beginning
+.SH SYNOPSIS
+\fBtfb\fR \fR[\fB-h\fR] \fB-s\fR \fISIZE\fR \fB-f\fR \fIFILE\fR
+.SH DESCRIPTION
+\fBtfb\fR is a simple utility program to trim file size, starting at the beginning of the file. It was originally inspired by the \fBtruncate(1)\fR utility, but unlike truncate it removes blocks of data starting at the beginning of a file.
+.PP
+\fBtfb\fR operates on \fBLinux\fR-based operating system and will successfully trim files on \fBext4\fR or \fBXFS\fR file systems. It uses Linux-specific \fBfallocate(2)\fR syscall, similar to \fBfallocate(1)\fR utility. Due to filesystem limitations data will be trimmed in multiples of filesystem's logical block size (usually 4096 bytes on \fBext4\fR).
+.PP
+\fBtfb\fR was developed to reduce administrative efforts when dealing with large log files, when historical data is of minimal significance.
+.SH OPTIONS
+\fBtfb\fR supports the following options:
+.TP
+\fB-h\fR
+Prints help message.
+.TP
+\fB-s SIZE\fR
+The \fBSIZE\fR to be removed from the beginning of the file. \fBSIZE\fR must be an non-zero positive integer followed by a \fBunits\fR suffix. \fBUnits\fR are B,K,M,G.
+.TP
+\fB-f FILE\fR
+The \fBFILE\fR to be trimmed from the beginning. The \fBFILE\fR must be located on an \fRext4\fB or \fBXFS\fR filesystem and the current user must have write access to it.
+.SH EXAMPLES
+\fBtfb\fR usage is fairly straight-forward.
+.TP
+Trim 1MB (1MB = 1024 KB = 1048576 Bytes) from the beginnig of a file:
+.PP
+.nf
+.RS
+tfb -s 1M -f /var/log/myapp.log
+.RE
+.fi
+.PP
+.SH SEE ALSO
+truncate(1), fallocate(1), fallocate(2), 
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Ivo Vachkov (ivachkov@xi-group.com)
