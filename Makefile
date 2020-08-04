@@ -25,3 +25,5 @@ clean:
 	$(MAKE) -C src clean
 	$(MAKE) -C doc clean
 	@rm -rf *.tar.gz
+	@rm -rf debian/.debhelper debian/files debian/tfb
+	@rm -rf debian/tfb.debhelper.log debian/tfb.substvars
