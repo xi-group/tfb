@@ -1,0 +1,8 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_auto_install:
+	dh_install src/tfb /usr/bin
+	dh_install doc/tfb.1.gz /usr/share/man/man1

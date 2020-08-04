@@ -1,0 +1,12 @@
+Source: tfb
+Maintainer: Ivo Vachkov <ivachkov@xi-group.com>
+Section: misc
+Priority: optional
+Standards-Version: 3.9.6
+Build-Depends: debhelper (>= 9),
+
+Package: tfb
+Architecture: amd64
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Trim Files from Beginning
+ The following package contains `tfb` utility.
