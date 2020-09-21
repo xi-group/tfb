@@ -12,5 +12,11 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-    - name: Build Debian package
-      uses: dawidd6/action-debian-package@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install buildtools
+        run: |
+          sudo apt install devscripts debhelper
+      - name: Build .deb package
+        run: |
+          make deb
