@@ -20,3 +20,10 @@ jobs:
       - name: Build .deb package
         run: |
           make deb
+      - name: Upload .deb package
+        uses: actions/upload-artifact@v2
+        with:
+          name: tfb package
+          path: |
+            ../tfb_1.0_amd64.deb
+            ../tfb_1.0_amd64.changes
