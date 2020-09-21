@@ -5,7 +5,7 @@
 .SH NAME
 \fBtfb\fR \- Trim Files from Beginning
 .SH SYNOPSIS
-\fBtfb\fR \fR[\fB-h\fR] \fB-s\fR \fISIZE\fR \fB-f\fR \fIFILE\fR
+\fBtfb\fR \fR[\fB-h\fR] \fB-s\fR \fISIZE\fR \fIFILE\fR
 .SH DESCRIPTION
 \fBtfb\fR is a simple utility program to trim file size, starting at the beginning of the file. It was originally inspired by the \fBtruncate(1)\fR utility, but unlike truncate it removes blocks of data starting at the beginning of a file.
 .PP
@@ -21,7 +21,7 @@ Prints help message.
 \fB-s SIZE\fR
 The \fBSIZE\fR to be removed from the beginning of the file. \fBSIZE\fR must be an non-zero positive integer followed by a \fBunits\fR suffix. \fBUnits\fR are B,K,M,G.
 .TP
-\fB-f FILE\fR
+\fBFILE\fR
 The \fBFILE\fR to be trimmed from the beginning. The \fBFILE\fR must be located on an \fRext4\fB or \fBXFS\fR filesystem and the current user must have write access to it.
 .SH EXAMPLES
 \fBtfb\fR usage is fairly straight-forward.
@@ -30,7 +30,7 @@ Trim 1MB (1MB = 1024 KB = 1048576 Bytes) from the beginnig of a file:
 .PP
 .nf
 .RS
-tfb -s 1M -f /var/log/myapp.log
+tfb -s 1M /var/log/myapp.log
 .RE
 .fi
 .SH SEE ALSO

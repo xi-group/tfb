@@ -17,13 +17,14 @@
 #define	FALLOC_FL_COLLAPSE_RANGE	0x08
 #endif
 
+#define	SIZE_ARG_MAX	32
+
 void print_help(char *progname)
 {
 	printf("\n");
 	printf("\t%s : Trim Files from Beginning\n", progname);
 	printf("\t\t-h : Print this help message\n");
 	printf("\t\t-s : Size to trim\n");
-	printf("\t\t-f : Filename to trim\n");
 	printf("\n");
 	printf("\tNotes:\n");
 	printf("\t\tSize is an integer representing number of bytes to trim and optional unit.\n");
@@ -31,7 +32,7 @@ void print_help(char *progname)
 	printf("\n");
 	printf("\tExample:\n");
 	printf("\t\t%s -h\n", progname);
-	printf("\t\t%s -s 10M -f FILE\n", progname);
+	printf("\t\t%s -s 10M FILE\n", progname);
 	printf("\n");
 
 	return;
@@ -102,17 +103,16 @@ int main(int argc, char * argv[])
 	/* Check minimum number of arguments */
 	if (argc < 3) {
 		print_help(argv[0]);
-		exit(255);
+		exit(-1);
 	}
 
+	filename = strndup(argv[argc], PATH_MAX);
+
 	/* Parse command line parameters */
-	while ((ch = getopt(argc, argv, "f:s:h")) != -1) {
+	while ((ch = getopt(argc, argv, "s:h")) != -1) {
 		switch (ch) {
-		case 'f':
-			filename = strndup(optarg, PATH_MAX);
-			break;
 		case 's':
-			size_arg = strndup(optarg, PATH_MAX);
+			size_arg = strndup(optarg, SIZE_ARG_MAX);
 			break;
 		case 'h':
 		default:
