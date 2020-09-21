@@ -13,7 +13,7 @@
 `tfb` supports the following options:
 * `-h`: Prints help message.
 * `-s SIZE`: **SIZE** of the data to be removed from the beginning of the file. **SIZE** must be an non-zero positive integer followed by a **units** suffix. **Units** are B,K,M,G.
-* `-f FILE`: **FILE** to be trimmed from the beginning. The **FILE** must be located on an **ext4** or **XFS** filesystem and the current user must have write access to it.
+* `FILE`: **FILE** to be trimmed from the beginning. The **FILE** must be located on an **ext4** or **XFS** filesystem and the current user must have write access to it.
 
 ## Usage
 
@@ -22,7 +22,7 @@
 To trim 1MB (1024KB / 1048576 bytes) from the beginnig of a file use:
 
 ```
-tfb -s 1M -f /var/log/myapp.log
+tfb -s 1M /var/log/myapp.log
 ```
 
 ## Build Instructions
