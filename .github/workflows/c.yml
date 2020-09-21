@@ -12,6 +12,5 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-    - uses: actions/checkout@v2
-    - name: make
-      run: make deb
+    - name: Build Debian package
+      uses: dawidd6/action-debian-package@v1
